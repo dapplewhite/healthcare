@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Transition Programs - HEALTHCAREready</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #2c5aa0 0%, #1e3f73 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #4CAF50;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 150px 0 100px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Program Section */
+        .program-section {
+            padding: 80px 0;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .program-section:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .program-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .program-title {
+            font-size: 2.5rem;
+            color: #2c5aa0;
+            margin-bottom: 1rem;
+        }
+
+        .program-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .program-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        /* At-Risk Analysis */
+        .at-risk-section {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-left: 4px solid #ff6b6b;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            color: #2c5aa0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .risk-meter {
+            background: linear-gradient(to right, #ff6b6b 0%, #ff8e8e 100%);
+            color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            margin: 1rem 0;
+        }
+
+        .risk-level {
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .target-jobs {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .target-jobs li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .job-count {
+            font-weight: bold;
+            color: #ff6b6b;
+        }
+
+        /* Career Outcomes */
+        .outcomes-section {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-left: 4px solid #4CAF50;
+        }
+
+        .salary-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .salary-card {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .job-title {
+            font-weight: bold;
+            color: #2c5aa0;
+            margin-bottom: 0.5rem;
+        }
+
+        .salary-range {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+
+        .growth-indicator {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Market Opportunity */
+        .opportunity-section {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-left: 4px solid #2196F3;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 200px;
+            margin: 1rem 0;
+        }
+
+        .security-score {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            margin: 1rem 0;
+        }
+
+        .score-number {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        /* ROI Calculator */
+        .roi-calculator {
+            background: linear-gradient(135deg, #2c5aa0 0%, #1e3f73 100%);
+            color: white;
+            padding: 3rem 0;
+            margin: 4rem 0;
+        }
+
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .calculator-form {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: rgba(255,255,255,0.9);
+            color: #333;
+        }
+
+        .roi-results {
+            text-align: center;
+        }
+
+        .roi-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #4CAF50;
+            margin: 1rem 0;
+        }
+
+        /* Comparison Matrix */
+        .comparison-matrix {
+            background: white;
+            padding: 3rem 0;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .comparison-table th {
+            background: #2c5aa0;
+            color: white;
+            padding: 1rem;
+            text-align: left;
+        }
+
+        .comparison-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .comparison-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .check-mark {
+            color: #4CAF50;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Final CTA */
+        .final-cta {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .cta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .cta-card {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .program-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .calculator-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        /* Animations */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            animation: slideInUp 0.6s ease forwards;
+        }
+
+        /* Interactive Elements */
+        .interactive-chart:hover {
+            transform: scale(1.02);
+            transition: transform 0.3s ease;
+        }
+
+        .program-nav {
+            position: sticky;
+            top: 80px;
+            background: white;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+            z-index: 100;
+        }
+
+        .program-nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .program-nav-links a {
+            color: #2c5aa0;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .program-nav-links a:hover,
+        .program-nav-links a.active {
+            background: #2c5aa0;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">HEALTHCAREready</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#programs">Programs</a></li>
+                <li><a href="#calculator">ROI Calculator</a></li>
+                <li><a href="#comparison">Compare</a></li>
+            </ul>
+            <a href="#apply" class="cta-button">Apply Now</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Your AI-Proof Career Transition Roadmap</h1>
+            <p>Data-driven career decisions. Real outcomes. Guaranteed results. Choose the path that transforms your AI risk into healthcare opportunity.</p>
+        </div>
+    </section>
+
+    <nav class="program-nav">
+        <div class="container">
+            <ul class="program-nav-links">
+                <li><a href="#care-express" class="active">Care Express</a></li>
+                <li><a href="#medtech-bridge">MedTech Bridge</a></li>
+                <li><a href="#healthtech-advanced">HealthTech Advanced</a></li>
+                <li><a href="#calculator">ROI Calculator</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- PROGRAM 1: CARE TRANSITION EXPRESS -->
+    <section class="program-section" id="care-express">
+        <div class="container">
+            <div class="program-header">
+                <h2 class="program-title">Care Transition Express</h2>
+                <p class="program-subtitle">Fast-track to healthcare careers for administrative and service professionals facing immediate AI displacement</p>
+            </div>
+
+            <div class="program-content">
+                <!-- At-Risk Analysis -->
+                <div class="at-risk-section">
+                    <h3 class="section-title">⚠️ At-Risk Professionals</h3>
+                    
+                    <div class="risk-meter">
+                        <div class="risk-level">CRITICAL RISK</div>
+                        <div>AI Displacement: 2024-2026</div>
+                    </div>
+
+                    <ul class="target-jobs">
+                        <li>Customer Service Representatives <span class="job-count">2.8M jobs</span></li>
+                        <li>Administrative Assistants <span class="job-count">2.2M jobs</span></li>
+                        <li>Data Entry Clerks <span class="job-count">1.2M jobs</span></li>
+                        <li>Telemarketers <span class="job-count">235K jobs</span></li>
+                    </ul>
+
+                    <div class="chart-container">
+                        <canvas id="displacementChart1"></canvas>
+                    </div>
+
+                    <p><strong>Geographic Impact:</strong> Highest in Los Angeles, Dallas, Atlanta, Phoenix metro areas</p>
+                    <p><strong>Timeline:</strong> 45-70% job reduction by 2027</p>
+                </div>
+
+                <!-- Career Outcomes -->
+                <div class="outcomes-section">
+                    <h3 class="section-title">💰 Career Outcomes</h3>
+                    
+                    <div class="salary-grid">
+                        <div class="salary-card">
+                            <div class="job-title">Certified Nursing Assistant</div>
+                            <div class="salary-range">$31,000 - $45,000</div>
+                            <div class="growth-indicator">20.7% growth</div>
+                        </div>
+                        <div class="salary-card">
+                            <div class="job-title">Home Health Aide</div>
+                            <div class="salary-range">$28,000 - $42,000</div>
+                            <div class="growth-indicator">21% growth</div>
+                        </div>
+                        <div class="salary-card">
+                            <div class="job-title">Patient Care Technician</div>
+                            <div class="salary-range">$29,000 - $38,000</div>
+                            <div class="growth-indicator">High demand</div>
+                        </div>
+                        <div class="salary-card">
+                            <div class="job-title">Medical Receptionist</div>
+                            <div class="salary-range">$32,000 - $41,000</div>
+                            <div class="growth-indicator">Stable growth</div>
+                        </div>
+                    </div>
+
+                    <p><strong>Top Paying States:</strong></p>
+                    <ul>
+                        <li>Hawaii: $45,187 average CNA salary</li>
+                        <li>Alaska: $42,735 average CNA salary</li>
+                        <li>Massachusetts: $38,550 average HHA salary</li>
+                    </ul>
+
+                    <p><strong>Career Progression:</strong><br>
+                    Year 1: CNA → Year 3: LPN (+$20K) → Year 5: RN (+$40K)</p>
+                </div>
+
+                <!-- Market Opportunity -->
+                <div class="opportunity-section">
+                    <h3 class="section-title">📈 Market Opportunity</h3>
+                    
+                    <div class="security-score">
+                        <div class="score-number">9.2/10</div>
+                        <div>AI-Resistance Score</div>
+                    </div>
+
+                    <div class="chart-container">
+                        <canvas id="opportunityChart1"></canvas>
+                    </div>
+
+                    <p><strong>Job Security Factors:</strong></p>
+                    <ul>
+                        <li>Human touch required for patient care</li>
+                        <li>Aging population driving demand</li>
+                        <li>73,000+ unfilled CNA positions nationally</li>
+                        <li>Recession-proof essential services</li>
+                    </ul>
+
+                    <p><strong>Market Drivers:</strong><br>
+                    • Baby Boomer aging (10,000 turn 65 daily)<br>
+                    • Shift from institutional to home care<br>
+                    • COVID-19 accelerated healthcare staffing needs</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMPARISON MATRIX -->
+    <section class="comparison-matrix" id="comparison">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 2rem;">Program Comparison Matrix</h2>
+            <p style="text-align: center; margin-bottom: 2rem;">Compare all three programs side-by-side to find your perfect fit</p>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Care Express</th>
+                        <th>MedTech Bridge</th>
+                        <th>HealthTech Advanced</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Duration</strong></td>
+                        <td>10-16 weeks</td>
+                        <td>24-36 weeks</td>
+                        <td>15-18 months</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Investment</strong></td>
+                        <td>$3,500</td>
+                        <td>$6,500</td>
+                        <td>$24,000</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Starting Salary</strong></td>
+                        <td>$31,000-$45,000</td>
+                        <td>$42,000-$51,000</td>
+                        <td>$70,000-$95,000</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Job Placement Rate</strong></td>
+                        <td><span class="check-mark">92%</span></td>
+                        <td><span class="check-mark">87%</span></td>
+                        <td><span class="check-mark">95%</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Evening Classes</strong></td>
+                        <td><span class="check-mark">✓</span></td>
+                        <td><span class="check-mark">✓</span></td>
+                        <td>Limited</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Income Share Option</strong></td>
+                        <td><span class="check-mark">✓</span></td>
+                        <td><span class="check-mark">✓</span></td>
+                        <td><span class="check-mark">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Clinical Experience</strong></td>
+                        <td>160 hours</td>
+                        <td>240 hours</td>
+                        <td>800+ hours</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Job Growth Rate</strong></td>
+                        <td>20.7%</td>
+                        <td>15%</td>
+                        <td>6-45%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>AI Resistance</strong></td>
+                        <td>9.2/10</td>
+                        <td>8.5/10</td>
+                        <td>9.5/10</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Best For</strong></td>
+                        <td>Fast career change</td>
+                        <td>Skills transfer</td>
+                        <td>Leadership roles</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="final-cta" id="apply">
+        <div class="container">
+            <h2>Start Your AI-Proof Career Today</h2>
+            <p>Join the thousands who've already made the transition. Limited spots available for our next cohort.</p>
+
+            <div class="cta-grid">
+                <div class="cta-card">
+                    <h3>Care Express</h3>
+                    <p>Next cohort: March 3, 2026</p>
+                    <p><strong>Early bird: $2,800</strong></p>
+                    <button onclick="applyProgram('care-express')" class="cta-button">Apply Now</button>
+                </div>
+                <div class="cta-card">
+                    <h3>MedTech Bridge</h3>
+                    <p>Next cohort: February 17, 2026</p>
+                    <p><strong>Early bird: $5,200</strong></p>
+                    <button onclick="applyProgram('medtech-bridge')" class="cta-button">Apply Now</button>
+                </div>
+                <div class="cta-card">
+                    <h3>HealthTech Advanced</h3>
+                    <p>Next cohort: January 27, 2026</p>
+                    <p><strong>Hospital partnerships available</strong></p>
+                    <button onclick="applyProgram('healthtech-advanced')" class="cta-button">Apply Now</button>
+                </div>
+            </div>
+
+            <p style="margin-top: 2rem;">Questions? Call (555) 123-4567 or email programs@healthcareready.com</p>
+        </div>
+    </section>
+
+    <footer style="background: #1a1a1a; color: white; padding: 40px 0; text-align: center;">
+        <div class="container">
+            <p>&copy; 2025 HEALTHCAREready. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Chart.js configurations
+        const chartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: {
+                        color: 'rgba(0,0,0,0.1)'
+                    }
+                },
+                x: {
+                    grid: {
+                        color: 'rgba(0,0,0,0.1)'
+                    }
+                }
+            }
+        };
+
+        // Displacement Charts
+        function createDisplacementChart(canvasId, data, label) {
+            const ctx = document.getElementById(canvasId).getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['2024', '2025', '2026', '2027', '2028', '2029', '2030'],
+                    datasets: [{
+                        label: label,
+                        data: data,
+                        borderColor: '#ff6b6b',
+                        backgroundColor: 'rgba(255, 107, 107, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    ...chartOptions,
+                    scales: {
+                        ...chartOptions.scales,
+                        y: {
+                            ...chartOptions.scales.y,
+                            title: {
+                                display: true,
+                                text: 'Jobs Available (thousands)'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Opportunity Charts
+        function createOpportunityChart(canvasId, data, label) {
+            const ctx = document.getElementById(canvasId).getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['2024', '2025', '2026', '2027', '2028', '2029', '2030'],
+                    datasets: [{
+                        label: label,
+                        data: data,
+                        backgroundColor: '#4CAF50',
+                        borderColor: '#45a049',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    ...chartOptions,
+                    scales: {
+                        ...chartOptions.scales,
+                        y: {
+                            ...chartOptions.scales.y,
+                            title: {
+                                display: true,
+                                text: 'Job Openings (thousands)'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Initialize charts when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, initializing charts...');
+            
+            // Check if chart elements exist before creating charts
+            const chartElements = [
+                'displacementChart1', 'opportunityChart1',
+                'displacementChart2', 'opportunityChart2', 
+                'displacementChart3', 'opportunityChart3'
+            ];
+            
+            let chartsCreated = 0;
+            
+            chartElements.forEach(id => {
+                const element = document.getElementById(id);
+                if (element) {
+                    chartsCreated++;
+                } else {
+                    console.log(`Chart element ${id} not found`);
+                }
+            });
+            
+            console.log(`Found ${chartsCreated} chart elements out of ${chartElements.length}`);
+            
+            // Only create charts if elements exist
+            if (document.getElementById('displacementChart1')) {
+                createDisplacementChart('displacementChart1', [100, 85, 65, 45, 35, 30, 25], 'Admin/Service Jobs');
+            }
+            if (document.getElementById('opportunityChart1')) {
+                createOpportunityChart('opportunityChart1', [820, 860, 900, 945, 990, 1040, 1095], 'Healthcare Support Jobs');
+            }
+            if (document.getElementById('displacementChart2')) {
+                createDisplacementChart('displacementChart2', [100, 90, 75, 60, 50, 40, 35], 'Financial/Admin Jobs');
+            }
+            if (document.getElementById('opportunityChart2')) {
+                createOpportunityChart('opportunityChart2', [120, 125, 130, 138, 145, 152, 160], 'Medical Assistant Jobs');
+            }
+            if (document.getElementById('displacementChart3')) {
+                createDisplacementChart('displacementChart3', [100, 95, 85, 75, 65, 58, 50], 'Analyst/Manager Jobs');
+            }
+            if (document.getElementById('opportunityChart3')) {
+                createOpportunityChart('opportunityChart3', [197, 210, 225, 242, 260, 280, 302], 'RN/Leadership Jobs');
+            }
+            
+            // Initialize ROI calculator with error checking
+            console.log('Initializing ROI calculator...');
+            calculateROI();
+        });
+
+        // ROI Calculator
+        function calculateROI() {
+            // Add error checking for elements
+            const salaryElement = document.getElementById('current-salary');
+            const programElement = document.getElementById('program-choice');
+            const locationElement = document.getElementById('location');
+            
+            // Check if elements exist before accessing their values
+            if (!salaryElement || !programElement || !locationElement) {
+                console.log('ROI Calculator elements not found, skipping calculation');
+                return;
+            }
+            
+            const currentSalary = parseInt(salaryElement.value) || 45000;
+            const program = programElement.value;
+            const location = locationElement.value;
+
+            let programCost, newSalary, duration;
+
+            // Program costs and salary outcomes (updated with more realistic ranges)
+            const programData = {
+                'care-express': { cost: 3500, baseSalary: 33000, topSalary: 45000 },
+                'medtech-bridge': { cost: 6500, baseSalary: 42000, topSalary: 51000 },
+                'healthtech-advanced': { cost: 24000, baseSalary: 75000, topSalary: 95000 }
+            };
+
+            // Location multipliers
+            const locationMultipliers = {
+                'average': 1.0,
+                'california': 1.35,
+                'texas': 1.15,
+                'florida': 1.05,
+                'new-york': 1.25
+            };
+
+            const data = programData[program];
+            const multiplier = locationMultipliers[location];
+            
+            programCost = data.cost;
+            
+            // Use higher salary potential if current salary is high
+            let targetSalary;
+            if (currentSalary >= data.baseSalary) {
+                targetSalary = Math.round(data.topSalary * multiplier);
+            } else {
+                targetSalary = Math.round(data.baseSalary * multiplier);
+            }
+            
+            // Ensure minimum improvement for career transition value
+            const minimumImprovement = Math.max(5000, currentSalary * 0.15); // At least $5K or 15% increase
+            if (targetSalary < currentSalary + minimumImprovement) {
+                targetSalary = currentSalary + minimumImprovement;
+            }
+            
+            newSalary = targetSalary;
+            duration = data.duration;
+
+            const salaryIncrease = newSalary - currentSalary;
+            const annualGain = salaryIncrease;
+            const threeYearGain = annualGain * 3;
+            const netGain = threeYearGain - programCost;
+            
+            // Calculate ROI properly: (Net Gain / Investment) * 100
+            const threeYearROI = (netGain / programCost) * 100;
+            
+            // Calculate break-even in months (how long to recover investment)
+            const monthsToBreakeven = salaryIncrease > 0 ? Math.ceil(programCost / (salaryIncrease / 12)) : 999;
+            
+            console.log('ROI Calculation:', {
+                currentSalary,
+                newSalary,
+                salaryIncrease,
+                programCost,
+                threeYearGain,
+                netGain,
+                threeYearROI: Math.round(threeYearROI),
+                monthsToBreakeven
+            });
+
+            // Update display
+            document.getElementById('salary-increase').textContent = salaryIncrease > 0 ? `+${salaryIncrease.toLocaleString()}` : `${salaryIncrease.toLocaleString()}`;
+            document.getElementById('program-cost').textContent = `${programCost.toLocaleString()}`;
+            document.getElementById('break-even').textContent = `${monthsToBreakeven} months`;
+            document.querySelector('.roi-number').textContent = `${Math.round(threeYearReturn)}%`;
+        }
+
+        // Program application
+        function applyProgram(program) {
+            // In a real application, this would redirect to an application form
+            alert(`Redirecting to ${program} application form...`);
+            // window.location.href = `apply.html?program=${program}`;
+        }
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Active navigation highlighting
+        function updateActiveNav() {
+            const sections = ['care-express', 'medtech-bridge', 'healthtech-advanced', 'calculator'];
+            const navLinks = document.querySelectorAll('.program-nav-links a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const element = document.getElementById(section);
+                if (element && window.scrollY >= element.offsetTop - 150) {
+                    current = section;
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateActiveNav);
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe program sections
+        document.querySelectorAll('.program-section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Initialize ROI calculator with default values - moved inside DOMContentLoaded
+        // calculateROI(); // Removed from here, now called inside DOMContentLoaded
+    </script>
+</body>
+</html>
+    </section>
+
+    <!-- PROGRAM 2: MEDTECH BRIDGE -->
+    <section class="program-section" id="medtech-bridge">
+        <div class="container">
+            <div class="program-header">
+                <h2 class="program-title">MedTech Bridge</h2>
+                <p class="program-subtitle">Leverage your analytical and financial skills in high-growth medical assistant and healthcare technology roles</p>
+            </div>
+
+            <div class="program-content">
+                <!-- At-Risk Analysis -->
+                <div class="at-risk-section">
+                    <h3 class="section-title">⚠️ At-Risk Professionals</h3>
+                    
+                    <div class="risk-meter">
+                        <div class="risk-level">HIGH RISK</div>
+                        <div>AI Displacement: 2025-2027</div>
+                    </div>
+
+                    <ul class="target-jobs">
+                        <li>Bookkeeping Clerks <span class="job-count">1.7M jobs</span></li>
+                        <li>Insurance Claims Processors <span class="job-count">425K jobs</span></li>
+                        <li>Bank Tellers <span class="job-count">495K jobs</span></li>
+                        <li>Payroll Clerks <span class="job-count">215K jobs</span></li>
+                    </ul>
+
+                    <div class="chart-container">
+                        <canvas id="displacementChart2"></canvas>
+                    </div>
+
+                    <p><strong>Skills at Risk:</strong> Pattern recognition, data processing, routine calculations</p>
+                    <p><strong>AI Threat:</strong> 38% of bookkeeping tasks automatable by 2030</p>
+                </div>
+
+                <!-- Career Outcomes -->
+                <div class="outcomes-section">
+                    <h3 class="section-title">💰 Career Outcomes</h3>
+                    
+                    <div class="salary-grid">
+                        <div class="salary-card">
+                            <div class="job-title">Medical Assistant</div>
+                            <div class="salary-range">$42,000 - $51,000</div>
+                            <div class="growth-indicator">15% growth</div>
+                        </div>
+                        <div class="salary-card">
+                            <div class="job-title">Medical Billing Specialist</div>
+                            <div class="salary-range">$39,000 - $53,000</div>
+                            <div class="growth-indicator">8% growth</div>
+                        </div>
+                        <div class="salary-card">
+                            <div class="job-title">Health Information Tech</div>
+                            <div class="salary-range">$47,000 - $62,000</div>
+                            <div class="growth-indicator">13% growth</div>
+                        </div>
+                        <div class="salary-card">
+                            <div class="job-title">Pharmacy Technician</div>
+                            <div class="salary-range">$35,000 - $46,000</div>
+                            <div class="growth-indicator">6% growth</div>
+                        </div>
+                    </div>
+
+                    <p><strong>Premium Specializations:</strong></p>
+                    <ul>
+                        <li>Outpatient Care Centers: $50,250 average</li>
+                        <li>Management Services: $49,090 average</li>
+                        <li>Specialty Hospitals: $50,270 average</li>
+                    </ul>
+
+                    <p><strong>Career Progression:</strong><br>
+                    MA → Lead MA → Office Manager → Practice Administrator</p>
+                </div>
+
+                <!-- Market Opportunity -->
+                <div class="opportunity-section">
+                    <h3 class="section-title">📈 Market Opportunity</h3>
+                    
+                    <div class="security-score">
+                        <div class="score-number">8.5/10</div>
+                        <div>AI-Resistance Score</div>
+                    </div>
+
+                    <div class="chart-container">
+                        <canvas id="opportunityChart2"></canvas>
+                    </div>
+
+                    <p><strong>Market Size:</strong></p>
+                    <ul>
+                        <li>119,800 annual medical assistant openings</li>
+                        <li>15% growth rate through 2033</li>
+                        <li>56% work in physician offices</li>
+                        <li>88% of employers require certification</li>
+                    </ul>
+
+                    <p><strong>Technology Integration:</strong><br>
+                    • EHR systems expansion<br>
+                    • Telemedicine growth<br>
+                    • Healthcare digitization needs</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROGRAM 3: HEALTHTECH ADVANCED -->
+    <section class="program-section" id="healthtech-advanced">
+        <div class="container">
+            <div class="program-header">
+                <h2 class="program-title">HealthTech Advanced</h2>
+                <p class="program-subtitle">Executive-level healthcare transition for analysts, managers, and college graduates seeking leadership roles</p>
+            </div>
+
+            <div class="program-content">
+                <!-- At-Risk Analysis -->
+                <div class="at-risk-section">
+                    <h3 class="section-title">⚠️ At-Risk Professionals</h3>
+                    
+                    <div class="risk-meter">
+                        <div class="risk-level">MODERATE RISK</div>
+                        <div>AI Displacement: 2026-2030</div>
+                    </div>
+
+                    <ul class="target-jobs">
+                        <li>Market Research Analysts <span class="job-count">745K jobs</span></li>
+                        <li>Financial Analysts <span class="job-count">291K jobs</span></li>
+                        <li>Operations Managers <span class="job-count">2.1M jobs</span></li>
+                        <li>Project Managers <span class="job-count">116K jobs</span></li>
+                    </ul>
+
+                    <div class="chart-container">
+                        <canvas id="displacementChart3"></canvas>
+                    </div>
+
+                    <p><strong>AI Impact:</strong> 53% of market research tasks replaceable</p>
+                    <p><strong>Skills Transfer:</strong> Leadership, analytics, project management highly valuable in healthcare</p>
+                </div>
+
+                <!-- Career Outcomes -->
+                <div class="outcomes-section">
+                    <h3 class="section-title">💰 Career Outcomes</h3>
+                    
+                    <div class="salary-grid">
+                        <div class="salary-card">
+                            <div class="job-title">Registered Nurse</div>
+                            <div class="salary-range">$70,000 - $95,000</div>
+                            <div class="growth-indicator">6% growth</div>
+                        </div>
+                        <div class="salary-card">
+                            <div class="job-title">Nurse Practitioner</div>
+                            <div class="salary-range">$110,000 - $140,000</div>
+                            <div class="growth-indicator">45.7% growth</div>
+                        </div>
+                        <div class="salary-card">
+                            <div class="job-title">Healthcare Manager</div>
+                            <div class="salary-range">$85,000 - $120,000</div>
+                            <div class="growth-indicator">28% growth</div>
+                        </div>
+                        <div class="salary-card">
+                            <div class="job-title">Healthcare Informatics</div>
+                            <div class="salary-range">$95,000 - $130,000</div>
+                            <div class="growth-indicator">35% growth</div>
+                        </div>
+                    </div>
+
+                    <p><strong>Geographic Premiums:</strong></p>
+                    <ul>
+                        <li>California: $124,000+ average RN salary</li>
+                        <li>Hawaii: $104,060 average RN salary</li>
+                        <li>Oregon: $98,630 average RN salary</li>
+                    </ul>
+
+                    <p><strong>Leadership Track:</strong><br>
+                    RN → Charge Nurse → Nurse Manager → Director of Nursing</p>
+                </div>
+
+                <!-- Market Opportunity -->
+                <div class="opportunity-section">
+                    <h3 class="section-title">📈 Market Opportunity</h3>
+                    
+                    <div class="security-score">
+                        <div class="score-number">9.5/10</div>
+                        <div>AI-Resistance Score</div>
+                    </div>
+
+                    <div class="chart-container">
+                        <canvas id="opportunityChart3"></canvas>
+                    </div>
+
+                    <p><strong>Critical Shortage:</strong></p>
+                    <ul>
+                        <li>78,610 RN shortage by 2025</li>
+                        <li>California needs 44,500+ nurses</li>
+                        <li>$10,000-$25,000 signing bonuses</li>
+                        <li>Travel nursing premiums up to $150K+</li>
+                    </ul>
+
+                    <p><strong>Leadership Demand:</strong><br>
+                    • Nurse manager positions growing 28%<br>
+                    • Healthcare administration expansion<br>
+                    • Informatics roles in digital transformation</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ROI CALCULATOR -->
+    <section class="roi-calculator" id="calculator">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 2rem;">Calculate Your Career Transition ROI</h2>
+            
+            <div class="calculator-grid">
+                <div class="calculator-form">
+                    <h3>Your Information</h3>
+                    <div class="form-group">
+                        <label for="current-salary">Current Annual Salary</label>
+                        <input type="number" id="current-salary" placeholder="45000" value="45000">
+                    </div>
+                    <div class="form-group">
+                        <label for="program-choice">Choose Program</label>
+                        <select id="program-choice">
+                            <option value="care-express">Care Transition Express</option>
+                            <option value="medtech-bridge">MedTech Bridge</option>
+                            <option value="healthtech-advanced">HealthTech Advanced</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="location">Location</label>
+                        <select id="location">
+                            <option value="average">National Average</option>
+                            <option value="california">California</option>
+                            <option value="texas">Texas</option>
+                            <option value="florida">Florida</option>
+                            <option value="new-york">New York</option>
+                        </select>
+                    </div>
+                    <button onclick="calculateROI()" class="cta-button" style="width: 100%; margin-top: 1rem;">Calculate ROI</button>
+                </div>
+
+                <div class="roi-results">
+                    <h3>Your Investment Return</h3>
+                    <div id="roi-display">
+                        <div class="roi-number">340%</div>
+                        <p>3-Year ROI</p>
+                        <div style="margin: 2rem 0;">
+                            <div style="font-size: 1.2rem; margin: 0.5rem 0;"><strong>Salary Increase:</strong> <span id="salary-increase">+$12,000</span></div>
+                            <div style="font-size: 1.2rem; margin: 0.5rem 0;"><strong>Program Cost:</strong> <span id="program-cost">$3,500</span></div>
+                            <div style="font-size: 1.2rem; margin: 0.5rem 0;"><strong>Break-even:</strong> <span id="break-even">4 months</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
