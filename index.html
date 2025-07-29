@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HEALTHCAREready - AI-Proof Your Career with Healthcare Training</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #2c5aa0 0%, #1e3f73 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #4CAF50;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 150px 0 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="%23FFFFFF"></path><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" fill="%23FFFFFF"></path><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="%23FFFFFF"></path></svg>') center bottom/cover no-repeat;
+            opacity: 0.1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            letter-spacing: -2px;
+        }
+
+        .hero .tagline {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            display: block;
+            color: #4CAF50;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Programs Section */
+        .programs {
+            padding: 100px 0;
+            background: #f8f9fa;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #2c5aa0;
+        }
+
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .program-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .program-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+        }
+
+        .program-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .program-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #2c5aa0;
+        }
+
+        .program-duration {
+            background: #e8f5e8;
+            color: #2e7d32;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .program-features {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .program-features li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .program-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        .salary-info {
+            background: linear-gradient(135deg, #2c5aa0 0%, #1e3f73 100%);
+            color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            text-align: center;
+        }
+
+        .salary-range {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        /* Why Choose Section */
+        .why-choose {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature {
+            padding: 2rem;
+            text-align: center;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .feature:hover {
+            background: #f8f9fa;
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .feature h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #2c5aa0;
+        }
+
+        /* CTA Section */
+        .final-cta {
+            background: linear-gradient(135deg, #2c5aa0 0%, #1e3f73 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .final-cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .final-cta p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-form {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            max-width: 500px;
+            margin: 2rem auto;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: rgba(255,255,255,0.9);
+        }
+
+        .large-cta {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .large-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(76, 175, 80, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-stats {
+                gap: 1rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .programs-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        /* Interactive Elements */
+        .program-card:hover .program-title {
+            color: #4CAF50;
+        }
+
+        .urgent-banner {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+            font-weight: bold;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .urgent-banner::before {
+            content: '⚠️';
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="urgent-banner">
+        AI is eliminating jobs NOW - 77,999 workers displaced in 2025 alone. Healthcare needs 200,000+ workers by 2030.
+    </div>
+
+    <header>
+        <nav class="container">
+            <div class="logo">HEALTHCAREready</div>
+            <ul class="nav-links">
+                <li><a href="#programs">Programs</a></li>
+                <li><a href="#why-choose">Why Choose Us</a></li>
+                <li><a href="#outcomes">Outcomes</a></li>
+                <li><a href="#apply">Apply Now</a></li>
+            </ul>
+            <a href="#apply" class="cta-button">Start Your Transition</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content fade-in">
+                <h1>AI-Proof Your Career</h1>
+                <p class="tagline">Transform from a shrinking industry to growing healthcare careers. Train for jobs that need human touch, earn more, and build a recession-proof future.</p>
+                
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">73,000+</span>
+                        <span class="stat-label">Healthcare Jobs Unfilled</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">15%</span>
+                        <span class="stat-label">Faster Job Growth</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">$8K-$25K</span>
+                        <span class="stat-label">Average Salary Increase</span>
+                    </div>
+                </div>
+
+                <a href="#apply" class="cta-button large-cta">See If You Qualify →</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="programs" id="programs">
+        <div class="container">
+            <h2 class="section-title">Choose Your Healthcare Career Path</h2>
+            <p style="text-align: center; font-size: 1.1rem; margin-bottom: 2rem;">Three proven programs designed for professionals transitioning from AI-impacted careers</p>
+
+            <div class="programs-grid">
+                <div class="program-card">
+                    <h3 class="program-title">Care Transition Express</h3>
+                    <div class="program-duration">10-16 Weeks</div>
+                    <p><strong>Perfect for:</strong> Customer service reps, administrative assistants, data entry clerks</p>
+                    
+                    <ul class="program-features">
+                        <li>Certified Nursing Assistant (CNA) certification</li>
+                        <li>Home Health Aide (HHA) training</li>
+                        <li>160 hours hands-on clinical experience</li>
+                        <li>Evening and weekend options available</li>
+                        <li>Job placement guarantee</li>
+                    </ul>
+
+                    <div class="salary-info">
+                        <div class="salary-range">$31,000 - $45,000</div>
+                        <div>Starting salary range</div>
+                    </div>
+
+                    <p><strong>Investment:</strong> $3,500 or $150/month</p>
+                    <a href="#apply" class="cta-button" style="width: 100%; text-align: center; margin-top: 1rem;">Learn More</a>
+                </div>
+
+                <div class="program-card">
+                    <h3 class="program-title">MedTech Bridge</h3>
+                    <div class="program-duration">24-36 Weeks</div>
+                    <p><strong>Perfect for:</strong> Bookkeepers, insurance processors, bank tellers</p>
+                    
+                    <ul class="program-features">
+                        <li>Medical Assistant national certification</li>
+                        <li>Electronic Health Records (EHR) mastery</li>
+                        <li>Clinical procedures: EKG, phlebotomy</li>
+                        <li>Medical billing and coding basics</li>
+                        <li>Specialty track options</li>
+                    </ul>
+
+                    <div class="salary-info">
+                        <div class="salary-range">$42,000 - $50,000</div>
+                        <div>Starting salary range</div>
+                    </div>
+
+                    <p><strong>Investment:</strong> $6,500 or $275/month</p>
+                    <a href="#apply" class="cta-button" style="width: 100%; text-align: center; margin-top: 1rem;">Learn More</a>
+                </div>
+
+                <div class="program-card">
+                    <h3 class="program-title">HealthTech Advanced</h3>
+                    <div class="program-duration">15-18 Months</div>
+                    <p><strong>Perfect for:</strong> Analysts, managers, college graduates</p>
+                    
+                    <ul class="program-features">
+                        <li>Accelerated Bachelor of Science in Nursing</li>
+                        <li>Healthcare informatics specialization</li>
+                        <li>Leadership and management track</li>
+                        <li>NCLEX-RN exam preparation</li>
+                        <li>Hospital partnership placements</li>
+                    </ul>
+
+                    <div class="salary-info">
+                        <div class="salary-range">$70,000 - $95,000</div>
+                        <div>Starting salary range</div>
+                    </div>
+
+                    <p><strong>Investment:</strong> $24,000 or employer-sponsored</p>
+                    <a href="#apply" class="cta-button" style="width: 100%; text-align: center; margin-top: 1rem;">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="why-choose" id="why-choose">
+        <div class="container">
+            <h2 class="section-title">Why HEALTHCAREready Works</h2>
+            
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Skills Transfer Optimized</h3>
+                    <p>Our programs are specifically designed to leverage your existing administrative, customer service, and analytical skills - making your transition faster and more successful.</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Fast Track to Employment</h3>
+                    <p>Get hired in 10 weeks to 18 months, not years. Our accelerated programs and direct healthcare partnerships mean you start earning quickly.</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">🏥</div>
+                    <h3>Guaranteed Job Placement</h3>
+                    <p>85% of our graduates are employed within 6 months, with many receiving job offers before graduation through our 50+ healthcare facility partnerships.</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">💰</div>
+                    <h3>Income Share Options</h3>
+                    <p>Can't pay upfront? Our Income Share Agreements mean you only pay when you're earning more. No financial barriers to your new career.</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Recession-Proof Careers</h3>
+                    <p>Healthcare jobs are essential services that grow during economic downturns. Build a career that's both AI-resistant and economically stable.</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">📈</div>
+                    <h3>Clear Growth Path</h3>
+                    <p>Start as a CNA, advance to RN, specialize further. Our programs create stepping stones to higher-paying healthcare leadership roles.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="final-cta" id="apply">
+        <div class="container">
+            <h2>Ready to AI-Proof Your Future?</h2>
+            <p>Join thousands of professionals who've successfully transitioned from shrinking industries to growing healthcare careers.</p>
+
+            <div class="cta-form">
+                <h3 style="margin-bottom: 1.5rem;">Get Your Free Career Assessment</h3>
+                <form id="application-form">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="current-job">Current/Previous Job Title</label>
+                        <input type="text" id="current-job" name="current-job" placeholder="e.g., Customer Service Representative" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="program-interest">Program of Interest</label>
+                        <select id="program-interest" name="program-interest" required>
+                            <option value="">Select a program</option>
+                            <option value="care-express">Care Transition Express (CNA/HHA)</option>
+                            <option value="medtech-bridge">MedTech Bridge (Medical Assistant)</option>
+                            <option value="healthtech-advanced">HealthTech Advanced (RN)</option>
+                            <option value="not-sure">Not sure - help me decide</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="large-cta">Get My Free Assessment</button>
+                </form>
+            </div>
+
+            <p style="margin-top: 2rem; opacity: 0.8;">✓ No obligation • ✓ Free career counseling • ✓ Immediate response</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 HEALTHCAREready. All rights reserved. | Empowering career transitions in the age of AI.</p>
+            <p style="margin-top: 1rem; opacity: 0.7;">Contact: (555) 123-4567 | info@healthcareready.com</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+
+        // Form submission handling
+        document.getElementById('application-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Simulate form submission (in real implementation, this would go to your backend)
+            console.log('Form submitted:', data);
+            
+            // Show success message
+            alert('Thank you! Your application has been submitted. A career counselor will contact you within 24 hours to discuss your personalized transition plan.');
+            
+            // Reset form
+            this.reset();
+        });
+
+        // Add fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all program cards and features
+        document.querySelectorAll('.program-card, .feature').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Dynamic stats counter animation
+        function animateCounter(element, target) {
+            let current = 0;
+            const increment = target / 100;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target.toLocaleString() + '+';
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current).toLocaleString() + '+';
+                }
+            }, 20);
+        }
+
+        // Trigger counter animation when hero section is visible
+        const heroObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counters = document.querySelectorAll('.stat-number');
+                    counters[0].textContent = '73,000+'; // Already formatted
+                    counters[1].textContent = '15%'; // Already formatted
+                    counters[2].textContent = '$8K-$25K'; // Already formatted
+                }
+            });
+        }, { threshold: 0.5 });
+
+        heroObserver.observe(document.querySelector('.hero'));
+    </script>
+</body>
+</html>
